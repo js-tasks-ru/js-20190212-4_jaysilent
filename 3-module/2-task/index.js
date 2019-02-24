@@ -15,7 +15,11 @@ calendar[Symbol.iterator] = function () {
 
                 current.setDate( current.getDate() + 1 );
 
-                let result = ( ~[0,6].indexOf(current.getDay()) ) ? `[${current.getDate()}]` : `${current.getDate()}` ;
+                let formatedDate = Intl.DateTimeFormat('ru-RU', {
+                    day: '2-digit'
+                }).format(current);
+
+                let result = ( ~[0,6].indexOf(current.getDay()) ) ? `[${formatedDate}]` : `${formatedDate}` ;
 
                 return { done: false,
                     value: result };
@@ -27,6 +31,6 @@ calendar[Symbol.iterator] = function () {
         }
     }
 
-};
+}
 
 
